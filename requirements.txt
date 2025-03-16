@@ -1,0 +1,4 @@
+selenium==4.10.0
+pyperclip==1.8.2
+pandas==2.0.3
+configparser==6.0.0

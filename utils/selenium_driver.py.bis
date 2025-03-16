@@ -1,0 +1,24 @@
+from selenium import webdriver
+from selenium.webdriver.chrome.service import Service
+from webdriver_manager.chrome import ChromeDriverManager
+
+def init_driver():
+    options = webdriver.ChromeOptions()
+    options.add_argument('--start-maximized')
+    options.add_argument('--disable-notifications')
+    options.add_argument("--no-sandbox")
+    options.add_argument("--disable-dev-shm-usage")
+    options.add_argument("--disable-gpu")
+    options.add_argument("--disable-blink-features=AutomationControlled")
+    
+    # Empêcher la fermeture automatique de Chrome
+    options.add_experimental_option("detach", True)
+
+    # Utiliser un profil temporaire pour éviter les erreurs de permissions
+    options.add_argument("--guest")
+
+    # Instancier le WebDriver avec le bon Service
+    service = Service(ChromeDriverManager().install())
+    driver = webdriver.Chrome(service=service, options=options)
+    
+    return driver
